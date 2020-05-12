@@ -6,6 +6,6 @@ const { getAll, create, edit, deleteById } = require('./controller');
 router.get('/', getAll);
 router.post('/', create);
 router.put('/:id', edit);
-router.post('/:id', deleteById);
+router.delete('/:id', deleteById);
 
 module.exports = router;
