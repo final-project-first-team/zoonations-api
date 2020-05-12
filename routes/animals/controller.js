@@ -5,7 +5,7 @@ module.exports = {
 		try {
 			const animals = await Animals.find({});
 
-			res.status(200).json({ message: 'Get All Animals data', data: animals });
+			res.status(200).json({ message: 'Get all animals data', data: animals });
 		} catch (error) {
 			console.log(error);
 			throw error;
