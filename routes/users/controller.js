@@ -11,7 +11,7 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	create: (req, res) => {
+	create: async (req, res) => {
 		try {
 			const { fullname, email, password, avatar } = req.body;
 			bcrypt.genSalt(10, function(err, salt) {
@@ -24,7 +24,7 @@ module.exports = {
 					});
 
 					res.status(201).json({
-						message: ' Add New User is Successfully',
+						message: 'New user successfully created!',
 						data: users
 					});
 				});
