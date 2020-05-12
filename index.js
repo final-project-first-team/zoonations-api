@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', require('./routes/users'));
-// app.use("/appointment", require("./routes/"))
+app.use('/animals', require('./routes/animals'));
 
 if (db) {
 	app.listen(PORT, () => {
