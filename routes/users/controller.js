@@ -16,21 +16,26 @@ module.exports = {
 	create: async (req, res) => {
 		try {
 			const { fullname, email, password, avatar } = req.body;
-			bcrypt.genSalt(10, function(err, salt) {
-				bcrypt.hash(password, salt, async function(err, hash) {
-					const users = await User.create({
-						fullname,
-						email,
-						password: hash,
-						avatar
-					});
+			const result = await User.findOne({ email: email });
 
-					res.status(201).json({
-						message: 'New user successfully created!',
-						data: users
+			if (result !== null) {
+				res.status(401).send('Your email has already been registered');
+			} else {
+				bcrypt.genSalt(10, function(err, salt) {
+					bcrypt.hash(password, salt, async function(err, hash) {
+						const users = await User.create({
+							fullname,
+							email,
+							password: hash,
+							avatar
+						});
+						res.status(201).json({
+							message: 'New user successfully created!',
+							data: users
+						});
 					});
 				});
-			});
+			}
 		} catch (error) {
 			console.log(error);
 		}
