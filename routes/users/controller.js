@@ -37,21 +37,22 @@ module.exports = {
 	},
 	login: async (req, res) => {
 		const { email, password } = req.body;
-
 		const result = await User.findOne({ email: email });
-		const { _id } = result;
 
-		bcrypt.compare(password, result.password).then((response) => {
-			if (response === true) {
-				const token = jwt.sign({ _id }, SECRET_KEY, {
-					expiresIn: '1h'
-				});
-				res.status(200).send({ token: token });
-			} else {
-				res.status(401).send({
-					message: 'You are not allowed to enter this api'
-				});
-			}
-		});
+		if (result == null) {
+			res.status(401).send('Your email is not registered');
+		} else {
+			const { _id } = result;
+			bcrypt.compare(password, result.password).then((response) => {
+				if (response === true) {
+					const token = jwt.sign({ _id }, SECRET_KEY, {
+						expiresIn: '1h'
+					});
+					res.status(200).send({ token: token });
+				} else {
+					res.status(401).send("Your email and password don't match");
+				}
+			});
+		}
 	}
 };
