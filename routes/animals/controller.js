@@ -14,9 +14,7 @@ module.exports = {
 	getById: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const result = await Animals.find((element) => {
-				return element._id === Number(id);
-			});
+			const result = await Animals.findById(id);
 			res.status(200).json({
 				message: `Get data by id = ${id} success`,
 				data: result
