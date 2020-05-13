@@ -1,8 +1,9 @@
-const { PORT, DATABASE } = require("./environment");
-const db = require("./connection");
+const { PORT, DATABASE, SECRET_KEY } = require('./environment');
+const db = require('./connection');
 
 module.exports = {
-    PORT,
-    DATABASE,
-    db,
-}
+	PORT,
+	DATABASE,
+	SECRET_KEY,
+	db
+};
