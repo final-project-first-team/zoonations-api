@@ -26,20 +26,20 @@ app.use(express.urlencoded({ extended: false }));
 // 			{
 // 				url: '/users',
 // 				methods: [ 'GET' ]
-// 			}
+// 			},
 // 		]
 // 	})
 // );
 
-// app.use((err, req, res, next) => {
-// 	if (err.code === 'credentials_required') {
-// 		return res.status(401).json({ message: "You're not a member" });
-// 	} else if (err.code === 'invalid_token') {
-// 		return res.status(401).json({ message: 'Your token is expired' });
-// 	} else {
-// 		return next();
-// 	}
-// });
+app.use((err, req, res, next) => {
+	if (err.code === 'credentials_required') {
+		return res.status(401).json({ message: 'Access Denied for you' });
+	} else if (err.code === 'invalid_token') {
+		return res.status(401).json({ message: 'Invalid Credentials' });
+	} else {
+		return next();
+	}
+});
 
 app.get('/', (req, res) => {
 	res.status(200).json({ messege: 'hello to nosql api' });

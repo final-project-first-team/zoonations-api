@@ -13,6 +13,15 @@ module.exports = {
 			console.log(error);
 		}
 	},
+	getUserById: async (req, res) => {
+		try {
+			const id = req.user._id;
+			const user = await User.findById(id);
+			res.status(200).json(user);
+		} catch (error) {
+			console.log(error);
+		}
+	},
 	create: async (req, res) => {
 		try {
 			const { fullname, email, password, avatar } = req.body;
@@ -43,9 +52,12 @@ module.exports = {
 		const { email, password } = req.body;
 		const result = await User.findOne({ email: email });
 
+		// Check if email exist
 		if (!result) return res.status(401).send('Your email is not registered');
 
 		const { _id } = result;
+
+		// Check if email and password match
 		bcrypt.compare(password, result.password).then((response) => {
 			if (response === true) {
 				const token = jwt.sign({ _id }, SECRET_KEY, {
