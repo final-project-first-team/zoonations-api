@@ -16,26 +16,25 @@ module.exports = {
 	create: async (req, res) => {
 		try {
 			const { fullname, email, password, avatar } = req.body;
-			const result = await User.findOne({ email: email });
 
-			if (result !== null) {
-				res.status(401).send('Your email has already been registered');
-			} else {
-				bcrypt.genSalt(10, function(err, salt) {
-					bcrypt.hash(password, salt, async function(err, hash) {
-						const users = await User.create({
-							fullname,
-							email,
-							password: hash,
-							avatar
-						});
-						res.status(201).json({
-							message: 'New user successfully created!',
-							data: users
-						});
+			// Check if email has already registered
+			const result = await User.findOne({ email: email });
+			if (result) return res.status(401).send('Your email has already registered');
+
+			bcrypt.genSalt(10, function(err, salt) {
+				bcrypt.hash(password, salt, async function(err, hash) {
+					const users = await User.create({
+						fullname,
+						email,
+						password: hash,
+						avatar
+					});
+					res.status(201).json({
+						message: 'New user successfully created!',
+						data: users
 					});
 				});
-			}
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -44,20 +43,18 @@ module.exports = {
 		const { email, password } = req.body;
 		const result = await User.findOne({ email: email });
 
-		if (result == null) {
-			res.status(401).send('Your email is not registered');
-		} else {
-			const { _id } = result;
-			bcrypt.compare(password, result.password).then((response) => {
-				if (response === true) {
-					const token = jwt.sign({ _id }, SECRET_KEY, {
-						expiresIn: '1h'
-					});
-					res.status(200).send({ token: token });
-				} else {
-					res.status(401).send("Your email and password don't match");
-				}
-			});
-		}
+		if (!result) return res.status(401).send('Your email is not registered');
+
+		const { _id } = result;
+		bcrypt.compare(password, result.password).then((response) => {
+			if (response === true) {
+				const token = jwt.sign({ _id }, SECRET_KEY, {
+					expiresIn: '1h'
+				});
+				res.status(200).send({ token: token });
+			} else {
+				res.status(401).send("Your email and password don't match");
+			}
+		});
 	}
 };
