@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../../models');
-const { SECRET_KEY } = require('../../config');
+const { SECRET_KEY, REFRESH_KEY } = require('../../config');
 
 module.exports = {
 	getAll: async (req, res) => {
@@ -60,10 +60,11 @@ module.exports = {
 		// Check if email and password match
 		bcrypt.compare(password, result.password).then((response) => {
 			if (response === true) {
-				const token = jwt.sign({ _id }, SECRET_KEY, {
+				const token = jwt.sign({ _id, isLoggedIn: true }, SECRET_KEY, {
 					expiresIn: '1h'
 				});
-				res.status(200).send({ token: token });
+				const refreshToken = jwt.sign({ _id, isLoggedIn: true }, REFRESH_KEY);
+				res.status(200).send({ token: token, refreshToken: refreshToken });
 			} else {
 				res.status(401).send("Your email and password don't match");
 			}
