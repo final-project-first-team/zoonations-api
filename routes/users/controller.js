@@ -16,9 +16,9 @@ module.exports = {
 	getUserById: async (req, res) => {
 		try {
 			const id = req.user._id;
+			const status = req.user.isLoggedIn;
 			const user = await User.findById(id);
-			// res.status(200).json({currentUser: user, isLoggedIn: });
-			res.status(200).json(req.user);
+			res.status(200).json({ currentUser: user, isLoggedIn: status });
 		} catch (error) {
 			console.log(error);
 		}
