@@ -62,7 +62,7 @@ module.exports = {
 		bcrypt.compare(password, result.password).then((response) => {
 			if (response === true) {
 				const token = jwt.sign({ _id, isLoggedIn: true }, SECRET_KEY, {
-					expiresIn: '15m'
+					expiresIn: '20s'
 				});
 				const refreshToken = jwt.sign({ _id, isLoggedIn: true }, REFRESH_KEY, { expiresIn: '24h' });
 				res.status(200).send({ token: token, refreshToken: refreshToken });
