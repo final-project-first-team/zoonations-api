@@ -62,13 +62,64 @@ module.exports = {
 		bcrypt.compare(password, result.password).then((response) => {
 			if (response === true) {
 				const token = jwt.sign({ _id, isLoggedIn: true }, SECRET_KEY, {
-					expiresIn: '1h'
+					expiresIn: '15m'
 				});
-				const refreshToken = jwt.sign({ _id, isLoggedIn: true }, REFRESH_KEY);
+				const refreshToken = jwt.sign({ _id, isLoggedIn: true }, REFRESH_KEY, { expiresIn: '24h' });
 				res.status(200).send({ token: token, refreshToken: refreshToken });
 			} else {
 				res.status(401).send("Your email and password don't match");
 			}
+		});
+	},
+	refreshToken: async (req, res) => {
+		const { refreshToken } = req.body;
+		const result = await User.findOne({ token: refreshToken });
+		if (!result) return res.status(401).send('Forbidden');
+		if (refreshToken !== result.token) return res.status(403).send('Invalid Credentials');
+		jwt.verify(refreshToken, REFRESH_KEY, (err, data) => {
+			if (err) return res.status(403).send('Invalid Credentials');
+			const accessToken = jwt.sign({ _id: data._id, isLoggedIn: true }, SECRET_KEY, { expiresIn: '15m' });
+			res.status(200).send({ token: accessToken });
+		});
+	},
+	addToken: async (req, res) => {
+		try {
+			const { id } = req.params;
+			const { refreshToken } = req.body;
+
+			const result = await User.findByIdAndUpdate(
+				id,
+				{
+					$set: {
+						token: refreshToken
+					}
+				},
+				{ new: true }
+			);
+
+			res.status(200).json({
+				message: 'Add token success',
+				data: result
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	logout: async (req, res) => {
+		const { id } = req.params;
+		const result = await User.findByIdAndUpdate(
+			id,
+			{
+				$set: {
+					token: ''
+				}
+			},
+			{ new: true }
+		);
+
+		res.status(200).json({
+			message: 'Delete token success',
+			data: result
 		});
 	}
 };

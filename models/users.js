@@ -17,6 +17,11 @@ const userSchema = new Schema({
 		type: String,
 		required: false,
 		default: 'https://via.placeholder.com/150'
+	},
+	token: {
+		type: String,
+		required: false,
+		default: ''
 	}
 });
 
