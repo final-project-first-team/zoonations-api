@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const userSchema = new Schema({
+const storageSchema = new Schema({
 	userId: {
 		type: Schema.Types.ObjectId,
 		ref: 'users'
@@ -39,6 +39,6 @@ const userSchema = new Schema({
 	}
 });
 
-const FoodStorage = mongoose.model('foodStorage', userSchema);
+const FoodStorage = mongoose.model('foodStorage', storageSchema);
 
 module.exports = FoodStorage;

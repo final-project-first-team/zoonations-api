@@ -48,6 +48,9 @@ app.get('/', (req, res) => {
 app.use('/users', require('./routes/users'));
 app.use('/animals', require('./routes/animals'));
 app.use('/zoos', require('./routes/zoosconservations'));
+app.use('/foodStorage', require('./routes/foodStorage'));
+app.use('/feeds', require('./routes/feeds'));
+app.use('/feedTransaction', require('./routes/feedTransaction'));
 
 if (db) {
 	app.listen(PORT, () => {
