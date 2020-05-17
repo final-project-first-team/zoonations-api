@@ -19,10 +19,10 @@ module.exports = {
 	create: async (req, res) => {
 		try {
 			const { userId } = req.body;
-			// const storage = await FoodStorage.create({
-			// 	userId
-			// });
-			res.status(201).json({ message: 'New storage successfully created', data: userId });
+			const storage = await FoodStorage.create({
+				userId
+			});
+			res.status(201).json({ message: 'New storage successfully created', data: storage });
 		} catch (error) {
 			console.log(error);
 		}
