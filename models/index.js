@@ -1,5 +1,6 @@
 module.exports = {
 	User: require('./users'),
 	Zoos: require('./zoosconservations'),
-	Animals: require('./animals')
+	Animals: require('./animals'),
+	FoodStorage: require('./foodStorage')
 };
