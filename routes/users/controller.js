@@ -39,7 +39,7 @@ module.exports = {
 						password: hash,
 						avatar
 					});
-					res.status(201).json({
+					res.status(201).send({
 						message: 'New user successfully created!',
 						data: users
 					});
