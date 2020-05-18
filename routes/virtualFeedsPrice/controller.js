@@ -3,7 +3,7 @@ const { VirtualFeedsPrice } = require('../../models');
 module.exports = {
 	getAll: async (req, res) => {
 		try {
-			const price = await VirtualFeedsPrice.find({}).populate('userId');
+			const price = await VirtualFeedsPrice.find({});
 			res.status(200).json({ message: 'Get all price data', data: price });
 		} catch (error) {
 			console.log(error);
@@ -12,6 +12,10 @@ module.exports = {
 	// restricted route
 	getById: async (req, res) => {
 		try {
+			const { id } = req.params;
+			const price = await VirtualFeedsPrice.findById(id);
+
+			res.status(200).send({ message: 'Get price data', data: price });
 		} catch (error) {
 			console.log(error);
 		}
