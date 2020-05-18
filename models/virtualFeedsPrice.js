@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const virtualFeedsPriceSchema = new Schema({
-	Type: {
+	type: {
 		type: String
 	},
 	regularMeat: {

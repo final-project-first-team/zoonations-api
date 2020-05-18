@@ -30,7 +30,7 @@ module.exports = {
 				premiumBean
 			} = req.body;
 
-			const price = await FoodStorage.create({
+			const price = await VirtualFeedsPrice.create({
 				type,
 				regularMeat,
 				premiumMeat,
