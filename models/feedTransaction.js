@@ -5,24 +5,32 @@ const feedTransactionSchema = new Schema({
 		type: String
 	},
 	animalId: {
-		type: String
+		type: String,
+		default: 'none'
 	},
 	type: {
-		type: String
+		type: String,
+		default: 'buy'
 	},
 	regularFeedType: {
-		type: String
+		type: String,
+		default: 'none'
 	},
 	regularFeedAmount: {
 		type: Number,
 		default: 0
 	},
 	premiumFeedType: {
-		type: String
+		type: String,
+		default: 'none'
 	},
 	premiumFeedAmount: {
 		type: Number,
 		default: 0
+	},
+	paymentMethod: {
+		type: String,
+		default: 'none'
 	},
 	total: {
 		type: Number,

@@ -9,7 +9,6 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	// restricted route
 	getById: async (req, res) => {
 		try {
 			const { id } = req.params;
@@ -31,7 +30,6 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	// restricted route
 	updateAmount: async (req, res) => {
 		try {
 			const { id } = req.params;
@@ -46,8 +44,10 @@ module.exports = {
 				premiumBean
 			} = req.body;
 
+			const userData = await FoodStorage.findOne({ userId: id });
+
 			const updatedStorage = await FoodStorage.findByIdAndUpdate(
-				id,
+				userData._id,
 				{
 					$set: {
 						regularMeat,
