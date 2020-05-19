@@ -12,6 +12,10 @@ module.exports = {
 	// restricted route
 	getById: async (req, res) => {
 		try {
+			const { id } = req.params;
+			const storage = await FoodStorage.findOne({ userId: id });
+
+			res.status(200).send({ message: 'Get storage data', data: storage });
 		} catch (error) {
 			console.log(error);
 		}
