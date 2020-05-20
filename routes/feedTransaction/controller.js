@@ -12,7 +12,7 @@ module.exports = {
 	getByUserId: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const transaction = await FeedTransaction.findOne({ userId: id });
+			const transaction = await FeedTransaction.findOne({ userId: id }).populate('userId');
 
 			res.status(200).send({ message: 'Get transaction data', data: transaction });
 		} catch (error) {
