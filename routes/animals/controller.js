@@ -39,7 +39,8 @@ module.exports = {
 				zoo,
 				image1,
 				image2,
-				image3
+				image3,
+				caption
 			} = req.body;
 			const newAnimal = await Animals.create({
 				name,
@@ -54,7 +55,8 @@ module.exports = {
 				zoo,
 				image1,
 				image2,
-				image3
+				image3,
+				caption
 			});
 			res.status(201).json({
 				message: 'New animal successfully created',
@@ -69,38 +71,40 @@ module.exports = {
 		try {
 			const { id } = req.params;
 			const {
-				name,
-				scientificName,
-				height,
-				weight,
-				populations,
-				habitats,
-				status,
-				threats,
-				feeds,
-				zoo,
-				image1,
-				image2,
-				image3
+				// name,
+				// scientificName,
+				// height,
+				// weight,
+				// populations,
+				// habitats,
+				// status,
+				// threats,
+				// feeds,
+				// zoo,
+				// image1,
+				// image2,
+				// image3,
+				caption
 			} = req.body;
 
 			const updatedAnimal = await Animals.findByIdAndUpdate(
 				id,
 				{
 					$set: {
-						name,
-						scientificName,
-						height,
-						weight,
-						populations,
-						habitats,
-						status,
-						threats,
-						feeds,
-						zoo,
-						image1,
-						image2,
-						image3
+						// name,
+						// scientificName,
+						// height,
+						// weight,
+						// populations,
+						// habitats,
+						// status,
+						// threats,
+						// feeds,
+						// zoo,
+						// image1,
+						// image2,
+						// image3,
+						caption
 					}
 				},
 				{ new: true }

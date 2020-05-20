@@ -48,11 +48,17 @@ const animalsSchema = new Schema({
 	},
 	image2: {
 		type: String,
-		required: false
+		required: false,
+		default: 'https://wallpaperaccess.com/full/2136603.jpg'
 	},
 	image3: {
 		type: String,
-		required: false
+		required: false,
+		default: 'https://wallpaperaccess.com/full/2136603.jpg'
+	},
+	caption: {
+		type: String,
+		default: ''
 	}
 });
 
