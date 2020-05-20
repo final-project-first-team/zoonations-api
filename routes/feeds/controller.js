@@ -27,5 +27,42 @@ module.exports = {
 			console.log(error);
 		}
 	},
-	updateFeeds: async (req, res) => {}
+	updateFeeds: async (req, res) => {
+		try {
+			const { id } = req.params;
+			const {
+				type
+				// feeds1,
+				// sources1,
+				// perDay1,
+				// feeds2,
+				// sources2,
+				// perDay2
+			} = req.body;
+
+			const updatedFeeds = await Feeds.findByIdAndUpdate(
+				id,
+				{
+					$set: {
+						type
+						// feeds1,
+						// sources1,
+						// perDay1,
+						// feeds2,
+						// sources2,
+						// perDay2
+					}
+				},
+				{ new: true }
+			);
+
+			res.status(200).json({
+				message: `Feeds by id-${id} successfully updated`,
+				data: updatedFeeds
+			});
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	}
 };
