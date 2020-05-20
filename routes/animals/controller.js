@@ -3,7 +3,7 @@ const { Animals } = require('../../models');
 module.exports = {
 	getAll: async (req, res) => {
 		try {
-			const animals = await Animals.find({});
+			const animals = await Animals.find({}).populate('feeds');
 
 			res.status(200).json({ message: 'Get all animals data', data: animals });
 		} catch (error) {
@@ -14,7 +14,7 @@ module.exports = {
 	getById: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const result = await Animals.findById(id);
+			const result = await Animals.findById(id).populate('feeds');
 			res.status(200).json({
 				message: `Get data by id = ${id} success`,
 				data: result
@@ -84,23 +84,27 @@ module.exports = {
 				image3
 			} = req.body;
 
-			const updatedAnimal = await Animals.findByIdAndUpdate(id, {
-				$set: {
-					name,
-					scientificName,
-					height,
-					weight,
-					populations,
-					habitats,
-					status,
-					threats,
-					feeds,
-					zoo,
-					image1,
-					image2,
-					image3
-				}
-			});
+			const updatedAnimal = await Animals.findByIdAndUpdate(
+				id,
+				{
+					$set: {
+						name,
+						scientificName,
+						height,
+						weight,
+						populations,
+						habitats,
+						status,
+						threats,
+						feeds,
+						zoo,
+						image1,
+						image2,
+						image3
+					}
+				},
+				{ new: true }
+			);
 
 			res.status(200).json({
 				message: `Animal by id-${id} successfully updated`,

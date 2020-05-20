@@ -11,7 +11,7 @@ const feedsSchema = new Schema({
 		type: String
 	},
 	perDay1: {
-		type: Number
+		type: String
 	},
 	feeds2: {
 		type: String
@@ -20,7 +20,7 @@ const feedsSchema = new Schema({
 		type: String
 	},
 	perDay2: {
-		type: Number
+		type: String
 	}
 });
 

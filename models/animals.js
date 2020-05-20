@@ -34,8 +34,8 @@ const animalsSchema = new Schema({
 		required: false
 	},
 	feeds: {
-		type: String,
-		required: false
+		type: Schema.Types.ObjectId,
+		ref: 'feeds'
 	},
 	zoo: {
 		type: String,
