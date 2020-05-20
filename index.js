@@ -52,7 +52,8 @@ app.use('/foodStorage', require('./routes/foodStorage'));
 app.use('/feeds', require('./routes/feeds'));
 app.use('/feedTransaction', require('./routes/feedTransaction'));
 app.use('/virtualFeedsPrice', require('./routes/virtualFeedsPrice'));
-app.use('/zooDonation', require('./routes/zooDonation'))
+app.use('/zooDonation', require('./routes/zooDonation'));
+app.use('/adoptTransaction', require('./routes/adoptTransaction'));
 
 if (db) {
 	app.listen(PORT, () => {
