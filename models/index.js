@@ -4,5 +4,6 @@ module.exports = {
 	Animals: require('./animals'),
 	FoodStorage: require('./foodStorage'),
 	Feeds: require('./feeds'),
-	FeedTransaction: require('./feedTransaction')
+	FeedTransaction: require('./feedTransaction'),
+	AdoptTransaction: require('./adoptTransaction')
 };
