@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-	res.status(200).json({ messege: 'hello to nosql api' });
+	res.status(200).json({ messege: 'hello to Zoonation api ' });
 });
 
 app.use('/users', require('./routes/users'));
@@ -52,6 +52,7 @@ app.use('/foodStorage', require('./routes/foodStorage'));
 app.use('/feeds', require('./routes/feeds'));
 app.use('/feedTransaction', require('./routes/feedTransaction'));
 app.use('/virtualFeedsPrice', require('./routes/virtualFeedsPrice'));
+app.use('/zooDonation', require('./routes/zooDonation'))
 
 if (db) {
 	app.listen(PORT, () => {
