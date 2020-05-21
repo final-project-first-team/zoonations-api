@@ -51,15 +51,25 @@ module.exports = {
 	edit: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const { name, photo, address, city, since, animalType, animalNumber } = req.body;
-			const edited = {
-				name,
+			const {
+				// name,
 				photo,
-				address,
-				city,
-				since,
-				animalType,
-				animalNumber
+				photo2
+				// address,
+				// city,
+				// since,
+				// animalType,
+				// animalNumber
+			} = req.body;
+			const edited = {
+				// name,
+				photo,
+				photo2
+				// address,
+				// city,
+				// since,
+				// animalType,
+				// animalNumber
 			};
 
 			const result = await Zoos.findByIdAndUpdate(id, {
