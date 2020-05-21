@@ -27,10 +27,11 @@ module.exports = {
 	// CREATE NEW ZOOS
 	create: async (req, res) => {
 		try {
-			const { name, photo, address, city, since, animalType, animalNumber } = req.body;
+			const { zooName, photo, about, address, city, since, animalType, animalNumber } = req.body;
 			const zoos = await Zoos.create({
-				name,
+				zooName,
 				photo,
+				about,
 				address,
 				city,
 				since,

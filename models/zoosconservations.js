@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const zooSchema = new Schema({
-    name: {
+    zooName: {
         type: String,
-        required: true,
+        required: false,
     },
     photo: {
+        type: String,
+        required: false,
+    },
+    about: {
         type: String,
         required: false,
     },
