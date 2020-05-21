@@ -83,7 +83,7 @@ module.exports = {
 				// zoo,
 				image1,
 				image2,
-				image3,
+				image3
 				// caption
 			} = req.body;
 
@@ -103,7 +103,7 @@ module.exports = {
 						// zoo,
 						image1,
 						image2,
-						image3,
+						image3
 						// caption
 					}
 				},
