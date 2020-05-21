@@ -9,7 +9,7 @@ const zooSchema = new Schema({
 		type: String,
 		required: false
 	},
-	photo: {
+	photo2: {
 		type: String,
 		required: false
 	},
