@@ -81,10 +81,10 @@ module.exports = {
 				// threats,
 				// feeds,
 				// zoo,
-				// image1,
-				// image2,
-				// image3,
-				caption
+				image1,
+				image2,
+				image3,
+				// caption
 			} = req.body;
 
 			const updatedAnimal = await Animals.findByIdAndUpdate(
@@ -101,10 +101,10 @@ module.exports = {
 						// threats,
 						// feeds,
 						// zoo,
-						// image1,
-						// image2,
-						// image3,
-						caption
+						image1,
+						image2,
+						image3,
+						// caption
 					}
 				},
 				{ new: true }

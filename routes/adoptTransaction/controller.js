@@ -3,9 +3,9 @@ const { AdoptTransaction } = require('../../models');
 module.exports = {
     getAll: async (req, res) => {
         try {
-            const AdoptTrans = await AdoptTrans.find({});
+            const adoptTransaction = await AdoptTransaction.find({});
 
-            res.status(200).json({ message: 'Get all adopt transaction data', data: AdoptTrans});
+            res.status(200).json({ message: 'Get all adopt transaction data', data: adoptTransaction});
         } catch (error) {
             console.log(error);
             throw error;
@@ -15,6 +15,7 @@ module.exports = {
     create: async (req, res) => {
         try {
             const {
+                userId,
                 animalId,
                 name,
                 email,
@@ -23,7 +24,8 @@ module.exports = {
                 amount,
                 paymentMethod,
             } = req.body
-        const newAdoptTrans = await AdoptTrans.create({
+        const newAdoptTrans = await AdoptTransaction.create({
+                userId,
                 animalId,
                 name,
                 email,
@@ -44,10 +46,24 @@ module.exports = {
     deleteById: async (req, res) => {
         try {
             const { id } = req.params;
-            const result = await AdoptTrans.findByIdAndRemove(id);
+            const result = await AdoptTransaction.findByIdAndRemove(id);
 
             res.status(200).json({
                 message: `Adopt Transaction by id-${id} successfully deleted`,
+                data: result
+            });
+        } catch (error) {
+            console.log(error);
+            throw error;
+            
+        }
+    },
+    getById: async (req, res ) => {
+        try {
+            const { id } = req.params;
+            const result = await AdoptTransaction.find({ userId:id });
+
+            res.status(200).send({
                 data: result
             });
         } catch (error) {

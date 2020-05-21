@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const adoptTransactionSchema = new Schema({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    },
     animalId: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: "animals"
     },
     name: {
         type: String,
@@ -22,9 +26,9 @@ const adoptTransactionSchema = new Schema({
         required: false
     },
     amount: {
-        type: Number,
+        type: String,
         required: true,
-        default: 0
+        default: ''
     },
     paymentMethod: {
         type: String,
