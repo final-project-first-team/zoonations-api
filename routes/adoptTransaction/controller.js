@@ -3,7 +3,7 @@ const { AdoptTransaction } = require('../../models');
 module.exports = {
 	getAll: async (req, res) => {
 		try {
-			const adoptTransaction = await AdoptTransaction.find({}).populate('users').populate('animals');
+			const adoptTransaction = await AdoptTransaction.find({}).populate('animalId').populate('userId');
 
 			res.status(200).send({ message: 'Get all adopt transaction data', data: adoptTransaction });
 		} catch (error) {
@@ -50,7 +50,7 @@ module.exports = {
 	getById: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const result = await AdoptTransaction.find({ userId: id }).populate('users').populate('animals');
+			const result = await AdoptTransaction.find({ userId: id }).populate('animalId').populate('userId');
 
 			res.status(200).send({
 				data: result
