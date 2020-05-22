@@ -46,7 +46,7 @@ module.exports = {
 	getById: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const result = await AdoptData.findOne({ userId: id });
+			const result = await AdoptData.findOne({ userId: id }).populate('animalId');
 
 			res.status(200).send({
 				data: result
