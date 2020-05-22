@@ -8,5 +8,6 @@ module.exports = {
 	VirtualFeedsPrice: require('./virtualFeedsPrice'),
 	AdoptTransaction: require('./adoptTransaction'),
 	ZooDonation: require('./zooDonation'),
-	AdoptData: require('./adoptData')
+	AdoptData: require('./adoptData'),
+	DonateTransaction: require('./donateTransaction')
 };

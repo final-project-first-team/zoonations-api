@@ -54,6 +54,7 @@ app.use('/feedTransaction', require('./routes/feedTransaction'));
 app.use('/virtualFeedsPrice', require('./routes/virtualFeedsPrice'));
 app.use('/zooDonation', require('./routes/zooDonation'));
 app.use('/adoptTransaction', require('./routes/adoptTransaction'));
+app.use('/donateTransaction', require('./routes/donateTransaction'));
 app.use('/adoptData', require('./routes/adoptData'));
 
 if (db) {

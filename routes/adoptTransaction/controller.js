@@ -3,9 +3,9 @@ const { AdoptTransaction } = require('../../models');
 module.exports = {
 	getAll: async (req, res) => {
 		try {
-			const adoptTransaction = await AdoptTransaction.find({});
+			const adoptTransaction = await AdoptTransaction.find({}).populate('users').populate('animals');
 
-			res.status(200).json({ message: 'Get all adopt transaction data', data: adoptTransaction });
+			res.status(200).send({ message: 'Get all adopt transaction data', data: adoptTransaction });
 		} catch (error) {
 			console.log(error);
 			throw error;
@@ -50,7 +50,7 @@ module.exports = {
 	getById: async (req, res) => {
 		try {
 			const { id } = req.params;
-			const result = await AdoptTransaction.find({ userId: id });
+			const result = await AdoptTransaction.find({ userId: id }).populate('users').populate('animals');
 
 			res.status(200).send({
 				data: result
