@@ -16,6 +16,10 @@ const adoptDataSchema = new Schema({
 	status: {
 		type: String,
 		default: 'inactive'
+	},
+	time: {
+		type: Date,
+		default: Date.now
 	}
 });
 
